@@ -2,6 +2,9 @@
 
 This gem takes a stringified JSON response(before parse) and objectifys it.  For the record, I don't really believe in objectification.
 
+It looks something like this:
+![run](http://i.imgur.com/hQXZiHV.gif)
+
 ## Installation
 
 Add this line to your application's Gemfile:
