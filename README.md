@@ -1,4 +1,4 @@
-# ClassyJson
+# ClassyJSON
 
 This gem takes a stringified JSON response(before parse) and objectifys it.  For the record, I don't really believe in objectification.
 
@@ -22,7 +22,8 @@ Or install it yourself as:
 
 Typically you'll be able to handle very large and nested JSON payloads with simplicity:
 
-``ruby
+```ruby
+require 'classify_json'
 resp = Net::HTTP.get(URI('some_json_api')
 results = ClassyJSON.convert(resp)
 ```
@@ -40,7 +41,7 @@ If your response is only an array, you'll need to specify the object we're creat
 ```ruby
 resp = Net::HTTP.get(URI('https://jobs.github.com/positions.json?description=software&location='))
 jobs = ClassyJSON.convert(resp, 'jobs')
-=> Array of jobs
+=> [Array, of, jobs]
 ```
 
 ## Contributing
