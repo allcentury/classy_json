@@ -1,6 +1,6 @@
 # ClassyJson
 
-TODO: Write a gem description
+This gem takes a stringified JSON response(before parse) and objectifys it.  For the record, I don't really believe in objectification.
 
 ## Installation
 
@@ -20,7 +20,28 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Typically you'll be able to handle very large and nested JSON payloads with simplicity:
+
+``ruby
+resp = Net::HTTP.get(URI('some_json_api')
+results = ClassyJSON.convert(resp)
+```
+
+
+When a single JSON object is in the response
+```ruby
+resp = Net::HTTP.get(URI('https://jobs.github.com/positions/eef0892e-a555-11e4-903f-115f3ec6fcd0.json'))
+results = ClassyJSON.convert(resp, job)
+results.job.company
+=>"Code Club"
+```
+
+If your response is only an array, you'll need to specify the object we're creating with a secondary argument like so:
+```ruby
+resp = Net::HTTP.get(URI('https://jobs.github.com/positions.json?description=software&location='))
+jobs = ClassyJSON.convert(resp, 'jobs')
+=> Array of jobs
+```
 
 ## Contributing
 
