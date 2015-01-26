@@ -23,7 +23,7 @@ Or install it yourself as:
 Typically you'll be able to handle very large and nested JSON payloads with simplicity:
 
 ```ruby
-require 'classify_json'
+require 'classy_json'
 resp = Net::HTTP.get(URI('some_json_api')
 results = ClassyJSON.convert(resp)
 ```
@@ -34,7 +34,7 @@ When a single JSON object is in the response
 resp = Net::HTTP.get(URI('https://jobs.github.com/positions/eef0892e-a555-11e4-903f-115f3ec6fcd0.json'))
 results = ClassyJSON.convert(resp, job)
 results.job.company
-=>"Code Club"
+=> "Code Club"
 ```
 
 If your response is only an array, you'll need to specify the object we're creating with a secondary argument like so:
