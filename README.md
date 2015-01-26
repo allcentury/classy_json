@@ -32,7 +32,7 @@ results = ClassyJSON.convert(resp)
 When a single JSON object is in the response
 ```ruby
 resp = Net::HTTP.get(URI('https://jobs.github.com/positions/eef0892e-a555-11e4-903f-115f3ec6fcd0.json'))
-results = ClassyJSON.convert(resp, job)
+results = ClassyJSON.convert(resp, 'job')
 results.job.company
 => "Code Club"
 ```
