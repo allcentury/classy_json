@@ -33,6 +33,7 @@ module ClassyJSON
     end
 
     def set_attrs(k, v)
+      k = k.split('/').last
       instance_variable_set("@#{k}", v)
       self.class.send(:attr_reader, k)
     end

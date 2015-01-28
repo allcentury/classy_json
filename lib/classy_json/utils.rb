@@ -23,12 +23,12 @@ module ClassyJSON
 
     def find_or_create(class_name)
       #searches for known constants
-      if Kernel.const_defined?(class_name)
-        klass = Object.const_get(class_name)
+      if ClassyJSON.const_defined?(class_name)
+        klass = ClassyJSON.const_get(class_name)
       else
         #if constant does not exist we create it and build
         #dynamic attributes
-        klass = Object.const_set(class_name, Class.new)
+        klass = ClassyJSON.const_set(class_name, Class.new)
         build_klass(klass)
         klass
       end

@@ -4,11 +4,11 @@ describe ClassyJSON do
   describe 'objects' do
     let(:objs) { ClassyJSON.convert(fixture("twitter.json").read) }
     it 'with json object' do
-      expect(objs.result).to be_a Result
-      expect(objs.query).to be_a Query
+      expect(objs.result).to be_a ClassyJSON::Result
+      expect(objs.query).to be_a ClassyJSON::Query
     end
     it 'works with nested json' do
-      expect(objs.query.params).to be_a Param
+      expect(objs.query.params).to be_a ClassyJSON::Param
     end
   end
   describe 'arrays' do
@@ -16,7 +16,7 @@ describe ClassyJSON do
       let(:objs) { ClassyJSON.convert(fixture("github-jobs.json").read, "jobs") }
       it 'with json array' do
         expect(objs.jobs).to be_a Array
-        expect(objs.jobs.first).to be_a Job
+        expect(objs.jobs.first).to be_a ClassyJSON::Job
       end
     end
     context 'invalid' do
@@ -33,7 +33,7 @@ describe ClassyJSON do
     end
     it 'works' do
       resp = ClassyJSON.convert(fixture("github-job.json").read, "job")
-      expect(resp.job).to be_a Job
+      expect(resp.job).to be_a ClassyJSON::Job
     end
   end
   describe 'nested objects' do
