@@ -1,6 +1,6 @@
 module ClassyJSON
   class Conversion
-    def initialize(options, ostruct)
+    def initialize(options)
       options = obj_struct_build(options)
     end
 
