@@ -8,13 +8,24 @@ module ClassyJSON
   include Utils
   class << self
     include ClassyJSON
-    def convert(resp, key=nil)
-      json = JSON.parse(resp)
-      validate_parser(json, key)
-      json = { key => json} if key
-      objs = build_response_attr(json)
 
-      ClassyJSON::Conversion.new(objs)
+    def convert(resp, key=nil, ostruct: false)
+      json = JSON.parse(resp)
+
+      # if JSON starts as an array, we need a top level key
+      validate_parser(json, key)
+
+      # set top level key
+      json = { key => json} if key
+
+      # build objects
+      if ostruct
+        objs = build_ostructs(json)
+      else
+        objs = build_response_attr(json)
+        ClassyJSON::Conversion.new(objs, ostruct)
+      end
+
     end
 
     private

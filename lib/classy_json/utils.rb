@@ -2,6 +2,18 @@ module ClassyJSON
   module Utils
     private
 
+    def build_ostructs(resp)
+      resp.keys.each_with_object([]) do |key, arr|
+        if resp[key].is_a? Array
+          #instantiate many objects
+          resp[key].each { |v| arr << OpenStruct.new(v) }
+        elsif resp[key].is_a? Hash
+          #instantiate one object
+          arr << OpenStruct.new(resp[key])
+        end
+      end
+    end
+
     def build_response_attr(resp)
       objs = resp.keys.each_with_object([]) do |key, arr|
         class_name = key.underscore.classify
