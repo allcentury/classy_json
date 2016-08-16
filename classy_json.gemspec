@@ -8,9 +8,9 @@ Gem::Specification.new do |spec|
   spec.version       = ClassyJson::VERSION
   spec.authors       = ["Anthony Ross"]
   spec.email         = ["anthony.ross@validic.com"]
-  spec.summary       = %q{TODO: Write a short summary. Required.}
-  spec.description   = %q{TODO: Write a longer description. Optional.}
-  spec.homepage      = ""
+  spec.summary       = %q{ClassyJSON is a simple JSON parsing library that objectifies JSON into classes.}
+  spec.description   = %q{The use case is for ClassyJSON is to allow ruby-like access to JSON rather than using the default Hash interface you get when you typically parse JSON}
+  spec.homepage      = "https://github.com/allcentury/classy_json"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")
@@ -19,6 +19,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_development_dependency "bundler", "~> 1.7"
+  spec.add_development_dependency "pry", "~> 0.10.1"
   spec.add_development_dependency "rake", "~> 10.0"
   spec.add_dependency 'activesupport'
 end

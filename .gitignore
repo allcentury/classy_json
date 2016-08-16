@@ -12,3 +12,6 @@
 *.o
 *.a
 mkmf.log
+tags
+.ruby-version
+**.swp

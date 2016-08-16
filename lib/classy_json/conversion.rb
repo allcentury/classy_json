@@ -6,8 +6,8 @@ module ClassyJSON
 
     private
 
+    # this method groups together objects by class type
     def group_by_class(options)
-      #this method groups together objects by class type
       objs = options.group_by { |v| v.class }
       objs.each_with_object({}) do |(k, v), response|
         if v.count > 1
@@ -18,14 +18,14 @@ module ClassyJSON
       end
     end
 
+    # this method determines if a single object was sent to Response or many.
+    # we use group_by_class in case of many otherwise we return the lone object
     def obj_struct_build(options)
-      #this method determines if a single object was sent to Response or many.
-      # we use group_by_class in case of many otherwise we return the lone object
       if options.is_a? Array
         vals = group_by_class(options)
         vals.each { |k, v| set_attrs(k, v) }
       elsif options.is_a? Hash
-        options.each { |k, v| set_attrs(k, v) } #multiple objects already built
+        options.each { |k, v| set_attrs(k, v) } # multiple objects already built
       else
         klass = options.class.to_s.underscore
         set_attrs(klass, options)

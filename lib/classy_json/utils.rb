@@ -1,17 +1,17 @@
 module ClassyJSON
   module Utils
+
     private
 
     def build_response_attr(resp)
       objs = resp.keys.each_with_object([]) do |key, arr|
-        class_name = key.underscore.classify
-        klass = find_or_create(class_name)
+        klass = find_or_create_klass(key)
 
         if resp[key].is_a? Array
-          #instantiate many objects
+          # instantiate many objects
           resp[key].each { |v| arr << klass.new(v) }
         elsif resp[key].is_a? Hash
-          #instantiate one object
+          # instantiate one object
           arr << klass.new(resp[key])
         end
       end
@@ -21,13 +21,14 @@ module ClassyJSON
       objs.size > 1 ? objs : objs.first
     end
 
-    def find_or_create(class_name)
-      #searches for known constants
+    # searches for known constants
+    def find_or_create_klass(key)
+      class_name = key.underscore.classify
       if ClassyJSON.const_defined?(class_name)
         klass = ClassyJSON.const_get(class_name)
       else
-        #if constant does not exist we create it and build
-        #dynamic attributes
+        # if constant does not exist we create it and build
+        # dynamic attributes
         klass = ClassyJSON.const_set(class_name, Class.new)
         build_klass(klass)
         klass
@@ -54,13 +55,13 @@ module ClassyJSON
         v = v.map { |j| build_response_attr(k => j) }.flatten
       end
       v = v.to_i if int?(v)
-      k = k.underscore #convert camelcase to underscore
+      k = k.underscore # convert camelcase to underscore
 
       return k, v
     end
 
     def int?(val)
-      #this converts strings to integers
+      # this converts strings to integers
       # ie "100" => 100
       # ie "ABC" => nil
       # ie "1" => 1
@@ -70,6 +71,5 @@ module ClassyJSON
     def all_hashes?(type)
       type.all? { |j| j.is_a? Hash }
     end
-
   end
 end

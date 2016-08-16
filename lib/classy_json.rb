@@ -8,12 +8,18 @@ module ClassyJSON
   include Utils
   class << self
     include ClassyJSON
+
+    # Converts the response object into ruby classes
+    #
+    # @param resp [String]
+    # @param key [String, nil]
+    # @return [ClassyJSON::Conversion] the object converted into the expected format.
     def convert(resp, key=nil)
       json = JSON.parse(resp)
       validate_parser(json, key)
       json = { key => json} if key
-      objs = build_response_attr(json)
 
+      objs = build_response_attr(json)
       ClassyJSON::Conversion.new(objs)
     end
 
