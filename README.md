@@ -2,7 +2,7 @@
 
 This gem takes a stringified JSON response(before parse) and objectifys it.  For the record, I don't really believe in objectification.
 
-It works like this :
+It works like this:
 ![run](https://s22.postimg.org/98b8zj9fl/h_QXZi_HV.gif)
 
 ## Installation
