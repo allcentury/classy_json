@@ -23,7 +23,7 @@ Or install it yourself as:
 
 ## Usage
 
-Typically you'll be able to handle very large and nested JSON payloads with simplicity:
+Typically you will be able to handle very large and nested JSON payloads with simplicity:
 
 ```ruby
 require 'classy_json'
